@@ -1,0 +1,69 @@
+<head>
+    {% load bootstrap4 %} 
+    {% bootstrap_css %} 
+    {% load widget_tweaks %}
+    {% load static %} 
+    <link rel="shortcut icon" href="{% static 'assets/icon.jpg' %}">
+    <title>Lab. Software</title>
+</head>
+<body>
+    {% include 'components/navbar/navbar.html' %}
+
+    <div class="container text-center">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th width="35%">Id curso</th>
+                    <th>Id profesor</th>
+                    <th>Nombre</th>
+                    <th>Nivel</th>
+                    <th>Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cursos in object_list %}
+
+                <tr>
+                    <td>{{ cursos.id_curso }}</td>
+                    <td>{{ cursos.id_profesor_fk }}</td>
+                    <td>{{ cursos.nombre }}</td>
+                    <td>{{ cursos.nivel }}</td>
+                    <td>{{ cursos.descripcion }}</td>
+                    <td>
+                        <form method="POST" action="eliminar/{{cursos.id_curso}}">
+                            {% csrf_token %}
+
+                            <div class="btn-group">
+                                <a href="detalle/{{cursos.id_curso}}" title="Ver" type="button" class="btn btn-success">Ver </a>
+                                <a href="editar/{{cursos.id_curso}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+                                
+                                <button class="btn btn-danger" onclick="return eliminar();" type="submit">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </form>  
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div align="center" class="btn_crear mb-3">
+            <a href="crear" type="button" class="btn btn-primary">Crear</a> <!-- Boton crear -->
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function eliminar() {
+            var x = confirm("Desea eliminar el curso?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+    </script>
+
+    {% include 'components/footer/footer.html' %}
+    {% bootstrap_javascript jquery='full' %} 
+</body>

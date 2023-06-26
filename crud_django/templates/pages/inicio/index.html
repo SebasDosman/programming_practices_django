@@ -1,0 +1,22 @@
+<html>
+    <head>
+        {% load bootstrap4 %} 
+        {% bootstrap_css %} 
+        {% load widget_tweaks %} 
+        {% load static %}
+        <link rel="shortcut icon" href="{% static 'assets/icon.jpg' %}">
+        <title>Lab. Software</title>
+    </head>
+    
+    <body>
+        {% include 'components/navbar/navbar.html' %}
+        
+        <div class="container text-center mt-5">
+            <h1>Parcial Lab. Software III</h1>
+            <p>En este parcial realizamos un CRUD sencillo basado en unas entidades esenciales de la enseñanza (Profesores, Cursos, Departamentos).</p>        
+            <p>Nos apoyamos del FrameWork "Django" para realizar dicho proyecto, también usamos Bootstrap y usamos una base de datos PostgreSQL.</p>
+        </div>
+        
+        {% include 'components/footer/footer.html' %}
+    </body>
+</html>

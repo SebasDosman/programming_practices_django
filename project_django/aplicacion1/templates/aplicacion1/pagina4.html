@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pagina4</title>
+    <link rel="stylesheet" href="{% static "css/style1.css" %}">
+  </head>
+  <body>
+    <h1>Estamos en la pagina 4</h1>
+    <a href="{% url 'aplicacion1:pagina5' %}">Pagina 5</a>
+  </body>
+</html>

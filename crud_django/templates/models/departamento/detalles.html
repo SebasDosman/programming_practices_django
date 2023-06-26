@@ -1,0 +1,25 @@
+<head>
+    {% load bootstrap4 %} 
+    {% bootstrap_css %} 
+    {% load widget_tweaks %}
+    {% load static %} 
+    <link rel="shortcut icon" href="{% static 'assets/icon.jpg' %}">
+    <title>Lab. Software</title>
+</head>
+<body>
+    {% include 'components/navbar/navbar.html' %}
+
+    <div class="container text-center">
+        <h4>Detalles</h4>
+    
+        <p><span class="txt_negrita">Id departamento:</span> <br> {{object.id_departamento}}</p>
+        <p><span class="txt_negrita">Nombre:</span> <br> {{object.nombre}}</p>
+        <p><span class="txt_negrita">Director:</span> <br> {{object.director}}</p>
+        <p><span class="txt_negrita">Descripción:</span> <br> {{object.descripcion}}</p>
+    
+        <a href="/departamentos" type="submit" class="btn btn-primary">Volver</a>
+    </div>
+
+    {% include 'components/footer/footer.html' %}
+    {% bootstrap_javascript jquery='full' %} 
+</body>

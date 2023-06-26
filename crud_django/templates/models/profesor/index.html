@@ -1,0 +1,70 @@
+<head>
+    {% load bootstrap4 %} 
+    {% bootstrap_css %} 
+    {% load widget_tweaks %}
+    {% load static %} 
+    <link rel="shortcut icon" href="{% static 'assets/icon.jpg' %}">
+    <title>Lab. Software</title>
+</head>
+<body>
+    {% include 'components/navbar/navbar.html' %}
+
+    
+    <div class="container text-center">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th width="35%">Id profesor</th>
+                    <th>Id deparamento</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for profesores in object_list %}
+
+                <tr>
+                    <td>{{ profesores.id_profesor }}</td>
+                    <td>{{ profesores.id_departamento_fk }}</td>
+                    <td>{{ profesores.nombre }}</td>
+                    <td>{{ profesores.direccion }}</td>
+                    <td>{{ profesores.telefono }}</td>
+                    <td>
+                        <form method="POST" action="eliminar/{{profesores.id_profesor}}">
+                            {% csrf_token %}
+
+                            <div class="btn-group">
+                                <a href="detalle/{{profesores.id_profesor}}" title="Ver" type="button" class="btn btn-success">Ver </a>
+                                <a href="editar/{{profesores.id_profesor}}" title="Editar" type="button" class="btn btn-primary">Editar </a>
+                                
+                                <button class="btn btn-danger" onclick="return eliminar();" type="submit">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </form>  
+                    </td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div align="center" class="btn_crear mb-3">
+            <a href="crear" type="button" class="btn btn-primary">Crear</a> <!-- Boton crear -->
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function eliminar() {
+            var x = confirm("Desea eliminar el profesor?");
+            if (x)
+                return true;
+            else
+                return false;
+        }
+    </script>
+
+    {% include 'components/footer/footer.html' %}
+    {% bootstrap_javascript jquery='full' %} 
+</body>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Portada</title>
+    <link rel="stylesheet" href="{% static "css/style1.css" %}">
+  </head>
+  <body>
+    <h1>Portada de la pagina</h1>
+    <h3>Lista de webs de la base de datos</h3>
+
+    {% if lista_webs %}
+    <table>
+      <thead>
+        <th>Nombre</th>
+        <th>Ruta</th>
+      </thead>
+
+      {% for web in lista_webs %}
+      <tr>
+        <td>{{ web.nombre }}</td>
+        <td>{{ web.ruta }}</td>
+      </tr>
+      {% endfor %}
+
+    </table>
+    
+    {% else %}
+    <p>No hay webs en la base de datos</p>
+    {% endif %}
+  </body>
+</html>
